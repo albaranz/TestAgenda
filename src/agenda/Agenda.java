@@ -39,7 +39,13 @@ public class Agenda {
         contactosList.addAll(contactos.values());
         return contactosList;
     }
-    
-    
+
+    public void setContactos(HashMap<String, Contacto> contactos) {
+        this.contactos = contactos;
+    }
+
+    public static void setN(int n) {
+        Agenda.n = n;
+    }
 
 }
