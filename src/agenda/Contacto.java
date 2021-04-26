@@ -5,6 +5,8 @@
  */
 package agenda;
 
+import java.util.Objects;
+
 /**
  *
  * @author sonix
@@ -60,5 +62,44 @@ public class Contacto {
     public String toString() {
         return "Contacto{" + "email=" + email + ", telefono=" + telefono + ", nombre=" + nombre + ", n=" + n + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 59 * hash + Objects.hashCode(this.telefono);
+        hash = 59 * hash + Objects.hashCode(this.nombre);
+        hash = 59 * hash + this.n;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Contacto other = (Contacto) obj;
+        if (this.n != other.n) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefono, other.telefono)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    }
    
+    
+    
 }

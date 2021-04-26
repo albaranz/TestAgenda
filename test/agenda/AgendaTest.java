@@ -5,6 +5,7 @@
  */
 package agenda;
 
+import agenda.exceptions.ContactoRepetidoException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.After;
@@ -22,7 +23,7 @@ import org.junit.Ignore;
 public class AgendaTest {
 
     private static Agenda agenda;
-    
+
     public AgendaTest() {
     }
 
@@ -37,19 +38,19 @@ public class AgendaTest {
 
     @Before
     public void setUp() {
-        HashMap<String,Contacto> datosTest = new HashMap();
+        HashMap<String, Contacto> datosTest = new HashMap();
         Contacto c = new Contacto("alba@gmail", "9999", "alba");
         c.setN(1);
-        datosTest.put("alba@gmail",c);
-        
+        datosTest.put("alba@gmail", c);
+
         Contacto b = new Contacto("luis@mail", "1111", "luis");
         b.setN(2);
         datosTest.put("luis@mail", b);
-        
+
         Contacto a = new Contacto("paula@mail", "2222", "paula");
         a.setN(3);
         datosTest.put("paula@mail", a);
-        
+
         agenda.setContactos(datosTest);
         agenda.setN(3);
     }
@@ -64,20 +65,29 @@ public class AgendaTest {
     @Test
     public void testAddContacto() throws Exception {
         System.out.println("addContacto");
-        Contacto contacto = new Contacto ("lola@mail","8888","lola");
-        Contacto expResult = new Contacto ("","","");
+        Contacto contacto = new Contacto("lola@mail", "8888", "lola");
         Contacto result = agenda.addContacto(contacto);
+
+        Contacto expResult = new Contacto("lola@mail", "8888", "lola");
+        expResult.setN(4);
         assertEquals(expResult, result);
 
     }
-    @Ignore
-    @Test
+
+    @Test(expected = ContactoRepetidoException.class)
     public void testAddContactoException() throws Exception {
         System.out.println("addContactoException");
         Contacto contacto = new Contacto("alba@gmail", "9999", "alba");
-        Contacto expResult = null;
-        Contacto result = agenda.addContacto(contacto);
-        assertEquals(expResult, result);
+        agenda.addContacto(contacto);
+
+    }
+
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddContactoException2() throws Exception {
+        System.out.println("addContactoException");
+        Contacto contacto = new Contacto("", "9999", "alba");
+        agenda.addContacto(contacto);
 
     }
 
@@ -88,9 +98,10 @@ public class AgendaTest {
     @Test
     public void testEliminarContacto() throws Exception {
         System.out.println("eliminarContacto");
-        String email = "";
-        Contacto expResult = null;
+        String email = "luis@mail";
         Contacto result = agenda.eliminarContacto(email);
+
+        Contacto expResult = new Contacto("luis@mail", "1111", "luis");
         assertEquals(expResult, result);
 
     }
@@ -98,13 +109,15 @@ public class AgendaTest {
     /**
      * Test of buscarContacto method, of class Agenda.
      */
-    @Ignore
     @Test
     public void testBuscarContacto() throws Exception {
         System.out.println("buscarContacto");
-        String email = "";
-        Contacto expResult = null;
+        String email = "paula@mail";
         Contacto result = agenda.buscarContacto(email);
+
+        Contacto expResult = new Contacto("paula@mail", "2222", "paula");
+        expResult.setN(3);
+
         assertEquals(expResult, result);
 
     }
