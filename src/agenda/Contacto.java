@@ -99,7 +99,14 @@ public class Contacto {
         }
         return true;
     }
-   
+   /*
+    public void contactoCheck(){
     
-    
+        if (contacto == null || contacto.getEmail() == null || contacto.getEmail().isEmpty()
+                || nombre()== null || contacto.getNombre().isEmpty() 
+                || contacto.getTelefono()== null || contacto.getTelefono().isEmpty()) {
+            
+        }
+    }
+    */
 }

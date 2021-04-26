@@ -71,7 +71,6 @@ public class AgendaTest {
         Contacto expResult = new Contacto("lola@mail", "8888", "lola");
         expResult.setN(4);
         assertEquals(expResult, result);
-
     }
 
     @Test(expected = ContactoRepetidoException.class)
@@ -82,11 +81,10 @@ public class AgendaTest {
 
     }
 
-    @Ignore
     @Test(expected = IllegalArgumentException.class)
-    public void testAddContactoException2() throws Exception {
-        System.out.println("addContactoException");
-        Contacto contacto = new Contacto("", "9999", "alba");
+    public void testAddContactoIllegalArgumentException() throws Exception {
+        System.out.println("addContactoIllegalArgumentException");
+        Contacto contacto = new Contacto("", "9999", null);
         agenda.addContacto(contacto);
 
     }
@@ -94,7 +92,6 @@ public class AgendaTest {
     /**
      * Test of eliminarContacto method, of class Agenda.
      */
-    @Ignore
     @Test
     public void testEliminarContacto() throws Exception {
         System.out.println("eliminarContacto");
@@ -102,6 +99,7 @@ public class AgendaTest {
         Contacto result = agenda.eliminarContacto(email);
 
         Contacto expResult = new Contacto("luis@mail", "1111", "luis");
+        expResult.setN(2);
         assertEquals(expResult, result);
 
     }
