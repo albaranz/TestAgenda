@@ -22,6 +22,9 @@ public class Agenda {
     }
 
     public Contacto eliminarContacto(String email) throws ContactoInexistenteException {
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         Contacto contacto = buscarContacto(email);
         contactos.remove(email);
         return contacto;

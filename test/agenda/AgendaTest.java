@@ -5,6 +5,7 @@
  */
 package agenda;
 
+import agenda.exceptions.ContactoInexistenteException;
 import agenda.exceptions.ContactoRepetidoException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,7 +102,18 @@ public class AgendaTest {
         Contacto expResult = new Contacto("luis@mail", "1111", "luis");
         expResult.setN(2);
         assertEquals(expResult, result);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testDeleteContactoIllegalArgumentException() throws Exception {
+        System.out.println("deleteContactoIllegalArgumentException");
+        agenda.eliminarContacto("");
+    }
+
+    @Test(expected = ContactoInexistenteException.class)
+    public void testDeleteContactoInexistenteException() throws Exception {
+        System.out.println("deleteContactoRepetidoException");
+        agenda.eliminarContacto("hola@mail");
     }
 
     /**
@@ -117,7 +129,18 @@ public class AgendaTest {
         expResult.setN(3);
 
         assertEquals(expResult, result);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testBuscarContactoIllegalArgumentException() throws Exception {
+        System.out.println("buscarContactoIllegalArgumentException");
+        agenda.eliminarContacto("");
+    }
+
+    @Test(expected = ContactoInexistenteException.class)
+    public void testBuscarContactoInexistenteException() throws Exception {
+        System.out.println("buscarContactoRepetidoException");
+        agenda.eliminarContacto("alba@mail");
     }
 
     /**
