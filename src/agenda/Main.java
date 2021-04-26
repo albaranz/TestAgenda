@@ -12,6 +12,8 @@ public class Main {
             agenda.addContacto(contacto);
         } catch (ContactoRepetidoException ex) {
             ex.getMessage();
+        }catch (IllegalArgumentException ex){
+        
         }
     }
     

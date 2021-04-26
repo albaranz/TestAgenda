@@ -11,11 +11,7 @@ public class Agenda {
     private static int n = 0;
 
     public Contacto addContacto(Contacto contacto) throws ContactoRepetidoException {
-        if (contacto == null || contacto.getEmail() == null || contacto.getEmail().isEmpty()
-                || contacto.getNombre()== null || contacto.getNombre().isEmpty() 
-                || contacto.getTelefono()== null || contacto.getTelefono().isEmpty()) {
-            throw new IllegalArgumentException("Los datos son incorrectos");
-        }
+        contacto.contactoCheck();
         if (contactos.containsKey(contacto.getEmail())) {
             throw new ContactoRepetidoException("Ya existe un contacto con email: " + contacto.getEmail());
         }

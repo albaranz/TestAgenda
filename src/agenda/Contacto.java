@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author sonix
  */
 public class Contacto {
+
     private String email;
     private String telefono;
     private String nombre;
@@ -99,14 +100,14 @@ public class Contacto {
         }
         return true;
     }
-   /*
-    public void contactoCheck(){
-    
-        if (contacto == null || contacto.getEmail() == null || contacto.getEmail().isEmpty()
-                || nombre()== null || contacto.getNombre().isEmpty() 
-                || contacto.getTelefono()== null || contacto.getTelefono().isEmpty()) {
-            
+
+    public  void contactoCheck() throws IllegalArgumentException{
+
+        if (email == null || email.isEmpty() || nombre == null || nombre.isEmpty()
+                || telefono == null || telefono.isEmpty()) {
+            throw new IllegalArgumentException("Los datos son incorrectos");
+         
         }
     }
-    */
+
 }

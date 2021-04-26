@@ -74,8 +74,8 @@ public class AgendaTest {
     }
 
     @Test(expected = ContactoRepetidoException.class)
-    public void testAddContactoException() throws Exception {
-        System.out.println("addContactoException");
+    public void testAddContactoRepetidoException() throws Exception {
+        System.out.println("addContactoRepetidoException");
         Contacto contacto = new Contacto("alba@gmail", "9999", "alba");
         agenda.addContacto(contacto);
 
